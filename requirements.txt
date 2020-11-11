@@ -1,0 +1,11 @@
+
+pip install django==3.1
+pip install djangorestframework==3.12.2
+pip install mysqlclient
+pip install djangorestframework_simplejwt
+
+step to start with new databases:
+step-1: move to wallet project
+step-2: python manage.py makemigrations
+step-3: python manage.py migrate
+step-4: python manage.py runserver
