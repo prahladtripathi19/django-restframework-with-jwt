@@ -83,6 +83,24 @@ class WalletPay(APIView):
 						txn.sent_to = userobj
 						txn.txntype = False
 						txn.save()
+						walletuser = Wallet.objects.filter(user=user_id)
+						if walletuser:
+							wallet_usr = walletuser[0]
+							wallet_usr.amount = wallet.amount + int(amount)
+							wallet_usr.debited = wallet.credited + int(amount)
+							wallet_usr.save()
+						else:
+							wallet_usr = Wallet()
+							wallet_usr.user = userobj
+							wallet_usr.amount = wallet.amount + int(amount)
+							wallet_usr.debited = wallet.credited + int(amount)
+							wallet_usr.save()
+						txn = WalletTranscation()
+						txn.wallet = wallet
+						txn.txnamount = int(amount)
+						txn.user_from = request.user
+						txn.txntype = True
+						txn.save()
 						return JsonResponse({"message":"send successfully", "current_balance":wallet.amount})
 					except:
 						raise
