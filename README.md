@@ -25,8 +25,11 @@ DATABASES = {
     }
 }
 step-6: move to wallet project
+
 step-7: python manage.py makemigrations
+
 step-8: python manage.py migrate
+
 step-9: python manage.py runserver
 
 Below are the apis detail of this project:
